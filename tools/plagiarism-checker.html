@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plagiarism Checker - VINM Technologies</title>
+    <meta name="description" content="Check your text for plagiarism using our advanced AI-powered similarity detection tool">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/tools.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">VINM Technologies</a>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#services">Services</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="index.html">Tools</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Tool Page -->
+    <section class="tool-page">
+        <div class="container">
+            <h1>Plagiarism Checker</h1>
+            <p class="tool-description">Check your text for plagiarism using our advanced AI-powered similarity detection tool</p>
+            
+            <div class="tool-interface">
+                <div class="input-section">
+                    <h3>Enter Your Text</h3>
+                    <textarea id="plagiarism-text" placeholder="Paste your text here to check for plagiarism..." rows="10"></textarea>
+                    <div class="tool-controls">
+                        <select id="language-select" class="tool-select">
+                            <option value="en">English</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                            <option value="de">German</option>
+                        </select>
+                        <select id="check-type" class="tool-select">
+                            <option value="standard">Standard Check</option>
+                            <option value="academic">Academic Paper</option>
+                            <option value="web">Web Content</option>
+                        </select>
+                        <button onclick="checkPlagiarism()" class="submit-button">
+                            <i class="fas fa-search"></i> Check Plagiarism
+                        </button>
+                    </div>
+                </div>
+
+                <div id="plagiarism-results" class="results-container">
+                    <div class="results-header">
+                        <h3>Results</h3>
+                        <div class="overall-score">
+                            <span class="score-label">Similarity Score:</span>
+                            <span id="similarity-score">-</span>
+                        </div>
+                    </div>
+                    <div id="detailed-results" class="detailed-results">
+                        <!-- Results will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-features-section">
+                <h2>Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-globe"></i>
+                        <h3>Multiple Languages</h3>
+                        <p>Support for over 10 languages</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-database"></i>
+                        <h3>Extensive Database</h3>
+                        <p>Compare against billions of sources</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>Detailed Reports</h3>
+                        <p>Get comprehensive similarity analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>VINM Technologies</h3>
+                    <p>Innovating Tomorrow's Technology</p>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VINM Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="js/plagiarism-checker.js"></script>
+</body>
+</html>
