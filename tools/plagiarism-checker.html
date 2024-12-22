@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plagiarism Checker - VINM Technologies</title>
-    <meta name="description" content="Check your text for plagiarism using our advanced AI-powered similarity detection tool">
+    <meta name="description"
+        content="Check your text for plagiarism using our advanced AI-powered similarity detection tool">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="css/tools.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -35,12 +40,14 @@
     <section class="tool-page">
         <div class="container">
             <h1>Plagiarism Checker</h1>
-            <p class="tool-description">Check your text for plagiarism using our advanced AI-powered similarity detection tool</p>
-            
+            <p class="tool-description">Check your text for plagiarism using our advanced AI-powered similarity
+                detection tool</p>
+
             <div class="tool-interface">
                 <div class="input-section">
                     <h3>Enter Your Text</h3>
-                    <textarea id="plagiarism-text" placeholder="Paste your text here to check for plagiarism..." rows="10"></textarea>
+                    <textarea id="text-input" placeholder="Paste your text here..."
+                        rows="10"></textarea>
                     <div class="tool-controls">
                         <select id="language-select" class="tool-select">
                             <option value="en">English</option>
@@ -58,8 +65,8 @@
                         </button>
                     </div>
                 </div>
-
-                <div id="plagiarism-results" class="results-container">
+                <div id="results" class="results-container">
+                    <div id="loading" class="loader" style="display: none;"></div>
                     <div class="results-header">
                         <h3>Results</h3>
                         <div class="overall-score">
@@ -119,4 +126,5 @@
     <script src="../js/main.js"></script>
     <script src="js/plagiarism-checker.js"></script>
 </body>
+
 </html>
