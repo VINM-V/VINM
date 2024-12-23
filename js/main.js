@@ -206,3 +206,25 @@ function initCircuitSimulator() {
 
 // Initialize circuit simulator when modal opens
 document.getElementById('circuit-simulator-modal').addEventListener('show', initCircuitSimulator);
+
+
+
+let slideIndex = 0;
+
+function moveSlide(direction) {
+    const slides = document.querySelector('.slider-container');
+    const totalSlides = document.querySelectorAll('.project-card').length;
+    slideIndex += direction;
+
+    if (slideIndex < 0) {
+        slideIndex = totalSlides - 1; // Loop to the last slide
+    } else if (slideIndex >= totalSlides) {
+        slideIndex = 0; // Loop to the first slide
+    }
+
+    console.log('Current Slide Index:', slideIndex); // Debugging line
+    console.log('Total Slides:', totalSlides); // Debugging line
+
+    const offset = -slideIndex * (310 + 20); // Adjust based on card width and margin
+    slides.style.transform = `translateX(${offset}px)`;
+}
