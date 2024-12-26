@@ -228,3 +228,4 @@ function moveSlide(direction) {
     const offset = -slideIndex * (310 + 20); // Adjust based on card width and margin
     slides.style.transform = `translateX(${offset}px)`;
 }
+

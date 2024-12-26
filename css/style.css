@@ -459,7 +459,7 @@ h3 {
         top: 70px;
         right: -100%;
         flex-direction: column;
-        background: white;
+        background: var(--card-bg-color);
         width: 80%;
         height: calc(100vh - 70px);
         padding: 2rem;
