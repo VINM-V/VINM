@@ -1,0 +1,46 @@
+[{
+    "image": "assets/sample_image.jpg",
+    "title": "Smart Factory System",
+    "description": "Complete IoT solution for manufacturing automation with real-time monitoring and analytics",
+    "tech": "IoT | Cloud | Analytics",
+    "category": "iot",
+    "demoUrl": "#",
+    "detailsUrl": "#"
+},
+{
+    "image": "assets/sample_image.jpg",
+    "title": "Medical Device Firmware",
+    "description": "FDA-compliant firmware for advanced medical monitoring devices",
+    "tech": "Embedded C | RTOS | Safety Critical",
+    "category": "embedded",
+    "demoUrl": "#",
+    "detailsUrl": "#"
+},
+{
+    "image": "assets/sample_image.jpg",
+    "title": "Smart Grid Solution",
+    "description": "Energy management system for smart cities with ML-powered optimization",
+    "tech": "ML | IoT | Power Electronics",
+    "category": "iot",
+    "demoUrl": "#",
+    "detailsUrl": "#"
+},
+{
+    "image": "assets/sample_image.jpg",
+    "title": "Drone Control System",
+    "description": "Advanced flight control system for autonomous drones",
+    "tech": "C++ | Real-time Systems | Control Theory",
+    "category": "embedded",
+    "demoUrl": "#",
+    "detailsUrl": "#"
+},
+{
+    "image": "assets/sample_image.jpg",
+    "title": "Cloud Management Platform",
+    "description": "Enterprise cloud resource management and monitoring solution",
+    "tech": "React | Node.js | AWS",
+    "category": "software",
+    "demoUrl": "#",
+    "detailsUrl": "#"
+}
+]
