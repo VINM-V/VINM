@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - VINM Technologies</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <video autoplay loop muted playsinline id="bg-video">
+        <source src="assets/hero-bg_small.mp4" type="video/mp4">
+    </video>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">VINM Technologies</a>
+            <div class="nav-toggle">
+                <span></span><span></span><span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="tools/index.html">Tools</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Our Projects</h2>
+            <div id="loading" class="loader" style="display: none;">Loading projects...</div>
+            <div class="projects-grid">
+                <!-- Projects will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <!-- ...existing code... -->
+        </div>
+    </footer>
+
+    <script src="js/loadProjects.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadProjects);
+    </script>
+</body>
+</html>
