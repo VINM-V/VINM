@@ -475,6 +475,93 @@ h3 {
     background: var(--secondary-color);
 }
 
+/* Featured Tools Section */
+.featured-tools {
+    padding: 6rem 0;
+    background: linear-gradient(180deg, var(--dark-color) 0%, var(--light-color) 100%);
+}
+
+.featured-tools .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.featured-tools .tool-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: left;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    color: white;
+}
+
+.featured-tools .tool-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.featured-tools .tool-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(37, 99, 235, 0.15);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.featured-tools .tool-icon i {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+.featured-tools .tool-tech {
+    display: inline-block;
+    margin: 1rem 0;
+    padding: 0.4rem 0.8rem;
+    background: rgba(37, 99, 235, 0.15);
+    color: var(--primary-color);
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.more-tools-wrapper {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.more-tools-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.more-tools-button:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.more-tools-button i {
+    transition: transform 0.3s ease;
+}
+
+.more-tools-button:hover i {
+    transform: translateX(5px);
+}
+
 /* Modal Styles */
 .modal {
     display: none;
