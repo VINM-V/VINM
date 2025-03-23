@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plagiarism Checker - VINM Technologies</title>
-    <meta name="description"
-        content="Check your text for plagiarism using our advanced AI-powered similarity detection tool">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="css/tools.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -39,64 +37,75 @@
     <!-- Tool Page -->
     <section class="tool-page">
         <div class="container">
-            <h1>Plagiarism Checker</h1>
-            <p class="tool-description">Check your text for plagiarism using our advanced AI-powered similarity
-                detection tool</p>
-
             <div class="tool-interface">
-                <div class="input-section">
-                    <h3>Enter Your Text</h3>
-                    <textarea id="text-input" placeholder="Paste your text here..."
-                        rows="10"></textarea>
-                    <div class="tool-controls">
-                        <select id="language-select" class="tool-select">
-                            <option value="en">English</option>
-                            <option value="es">Spanish</option>
-                            <option value="fr">French</option>
-                            <option value="de">German</option>
-                        </select>
-                        <select id="check-type" class="tool-select">
-                            <option value="standard">Standard Check</option>
-                            <option value="academic">Academic Paper</option>
-                            <option value="web">Web Content</option>
-                        </select>
-                        <button onclick="checkPlagiarism()" class="submit-button">
-                            <i class="fas fa-search"></i> Check Plagiarism
+                <div class="analyzer-header">
+                    <div class="analyzer-info">
+                        <h2>Plagiarism Checker</h2>
+                        <p>Check your text for plagiarism using our advanced AI-powered similarity detection system.</p>
+                    </div>
+                    <div class="upload-options">
+                        <button onclick="document.getElementById('file-input').click()" class="sample-button">
+                            <i class="fas fa-file-upload"></i> Upload File
+                        </button>
+                        <input type="file" id="file-input" accept=".txt,.doc,.docx" style="display: none"
+                            onchange="handleFileUpload(event)">
+                        <button onclick="pasteFromClipboard()" class="sample-button">
+                            <i class="fas fa-paste"></i> Paste from Clipboard
                         </button>
                     </div>
                 </div>
-                <div id="loading" class="loader" style="display: none;"></div>
-                <div id="results" class="results-container">
-                    <div class="results-header">
-                        <h3>Results</h3>
-                        <div class="overall-score">
-                            <span class="score-label">Similarity Score:</span>
-                            <span id="similarity-score">-</span>
-                        </div>
-                    </div>
-                    <div id="detailed-results" class="detailed-results">
-                        <!-- Results will be populated here -->
+
+                <div class="analyzer-input">
+                    <textarea id="text-input"
+                        placeholder="Enter or paste your text here (minimum 50 words recommended for accurate results)"
+                        rows="12"></textarea>
+                    <div class="text-stats">
+                        <span>Words: <span id="word-count">0</span></span>
+                        <span>Characters: <span id="char-count">0</span></span>
                     </div>
                 </div>
-            </div>
 
-            <div class="tool-features-section">
-                <h2>Features</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <i class="fas fa-globe"></i>
-                        <h3>Multiple Languages</h3>
-                        <p>Support for over 10 languages</p>
+                <button onclick="checkPlagiarism()" class="submit-button">
+                    <i class="fas fa-magnifying-glass"></i> Check for Plagiarism
+                </button>
+
+                <div id="results" class="results-container enhanced-results" style="display: none;">
+                    <div class="plagiarism-score">
+                        <h3>Similarity Analysis</h3>
+                        <div class="score-indicator">
+                            <div class="score-circle">
+                                <span id="similarity-score">0%</span>
+                                <span class="score-label">Similarity</span>
+                            </div>
+                            <div class="score-details">
+                                <div class="score-item">
+                                    <span class="label">Unique Content</span>
+                                    <div class="progress-bar">
+                                        <div id="unique-bar" class="progress"></div>
+                                    </div>
+                                </div>
+                                <div class="score-item">
+                                    <span class="label">Similar Content</span>
+                                    <div class="progress-bar">
+                                        <div id="similar-bar" class="progress"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <i class="fas fa-database"></i>
-                        <h3>Extensive Database</h3>
-                        <p>Compare against billions of sources</p>
+
+                    <div id="matches" class="matches-grid">
+                        <h3>Matched Sources</h3>
+                        <div id="sources-list"></div>
                     </div>
-                    <div class="feature-card">
-                        <i class="fas fa-file-alt"></i>
-                        <h3>Detailed Reports</h3>
-                        <p>Get comprehensive similarity analysis</p>
+
+                    <div class="report-actions">
+                        <button onclick="generateReport()" class="action-button">
+                            <i class="fas fa-file-export"></i> Export Report
+                        </button>
+                        <button onclick="viewDetailedAnalysis()" class="action-button secondary">
+                            <i class="fas fa-chart-bar"></i> Detailed Analysis
+                        </button>
                     </div>
                 </div>
             </div>
@@ -125,6 +134,102 @@
 
     <script src="../js/main.js"></script>
     <script src="js/plagiarism-checker.js"></script>
+    <script src="js/tool-implementations.js"></script>
+    <script>
+        // Text counter
+        document.getElementById('text-input').addEventListener('input', function () {
+            const text = this.value;
+            document.getElementById('char-count').textContent = text.length;
+            document.getElementById('word-count').textContent = text.trim() ? text.trim().split(/\s+/).length : 0;
+        });
+
+        async function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const text = await file.text();
+                document.getElementById('text-input').value = text;
+                document.getElementById('text-input').dispatchEvent(new Event('input'));
+            }
+        }
+
+        async function pasteFromClipboard() {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById('text-input').value = text;
+                document.getElementById('text-input').dispatchEvent(new Event('input'));
+            } catch (err) {
+                alert('Unable to read clipboard. Please paste manually.');
+            }
+        }
+
+        async function checkPlagiarism() {
+            const text = document.getElementById('text-input').value;
+            if (!text.trim()) {
+                alert('Please enter some text to analyze');
+                return;
+            }
+
+            const button = document.querySelector('.submit-button');
+            const results = document.getElementById('results');
+            button.disabled = true;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
+
+            try {
+                const response = await fetch('https://vinm-plagiarism-detection.onrender.com/api/check-plagiarism', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'API-Key': API_KEY
+                    },
+                    body: JSON.stringify({ text })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Server returned ' + response.status);
+                }
+
+                const data = await response.json();
+                displayResults(data);
+            } catch (error) {
+                results.style.display = 'block';
+                results.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Server Error</h3>
+                        <p>Our plagiarism checking service is temporarily unavailable. Please try again later.</p>
+                        <small>Error: ${error.message}</small>
+                    </div>
+                `;
+            } finally {
+                button.disabled = false;
+                button.innerHTML = '<i class="fas fa-magnifying-glass"></i> Check for Plagiarism';
+            }
+        }
+
+        function displayResults(results) {
+            document.getElementById('results').style.display = 'block';
+
+            // Calculate overall similarity score
+            const overallSimilarity = results.reduce((acc, item) => acc + item.score, 0) / results.length;
+            
+            // Update similarity display
+            document.getElementById('similarity-score').textContent = `${(overallSimilarity * 100).toFixed(1)}%`;
+            document.getElementById('unique-bar').style.width = `${100 - (overallSimilarity * 100)}%`;
+            document.getElementById('similar-bar').style.width = `${overallSimilarity * 100}%`;
+
+            // Display matched sources
+            document.getElementById('sources-list').innerHTML = results
+                .map(result => `
+                    <div class="source-item">
+                        <div class="source-content">
+                            <span class="source-text">${result.sentence}</span>
+                            <a href="${result.url}" target="_blank" class="source-url">${result.url}</a>
+                        </div>
+                        <span class="source-similarity">${(result.score * 100).toFixed(1)}% match</span>
+                    </div>
+                `).join('');
+        }
+    </script>
 </body>
 
 </html>

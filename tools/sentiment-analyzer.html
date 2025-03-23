@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analyzer - VINM Technologies</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/tools.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">VINM Technologies</a>
+            <div class="nav-toggle">
+                <span></span><span></span><span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#services">Services</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="index.html">Tools</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="tool-page">
+        <div class="container">
+            <div class="tool-interface">
+                <div class="analyzer-header">
+                    <div class="analyzer-info">
+                        <h2>Sentiment Analyzer</h2>
+                        <p>Analyze the emotional tone and sentiment of your text using advanced natural language processing.</p>
+                    </div>
+                    <div class="sample-texts">
+                        <button onclick="loadSampleText('positive')" class="sample-button">Try Positive Example</button>
+                        <button onclick="loadSampleText('negative')" class="sample-button">Try Negative Example</button>
+                    </div>
+                </div>
+
+                <div class="analyzer-input">
+                    <textarea id="text-input" 
+                        placeholder="Enter text to analyze (minimum 10 words recommended for better accuracy)"
+                        rows="6"></textarea>
+                    <div class="text-stats">
+                        <span>Words: <span id="word-count">0</span></span>
+                        <span>Characters: <span id="char-count">0</span></span>
+                    </div>
+                </div>
+
+                <button onclick="analyzeSentiment()" class="submit-button">
+                    <i class="fas fa-search"></i> Analyze Text
+                </button>
+
+                <div id="results" class="results-container enhanced-results" style="display: none;">
+                    <div class="sentiment-score">
+                        <h3>Overall Sentiment</h3>
+                        <div class="sentiment-indicator">
+                            <div class="sentiment-label">
+                                <span id="sentiment-label">Neutral</span>
+                                <span id="score" class="score-value">0</span>
+                            </div>
+                            <div class="sentiment-bar">
+                                <div class="bar-negative"></div>
+                                <div class="bar-neutral"></div>
+                                <div class="bar-positive"></div>
+                                <div id="sentiment-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="emotions" class="emotions-grid">
+                        <!-- Emotions will be displayed here -->
+                    </div>
+
+                    <div class="analysis-summary">
+                        <h3>Key Findings</h3>
+                        <div id="key-findings" class="findings-grid">
+                            <!-- Findings will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>VINM Technologies</h3>
+                    <p>Innovating Tomorrow's Technology</p>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VINM Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="js/tool-implementations.js"></script>
+    <script>
+        // Add word and character counter
+        document.getElementById('text-input').addEventListener('input', function() {
+            const text = this.value;
+            document.getElementById('char-count').textContent = text.length;
+            document.getElementById('word-count').textContent = text.trim() ? text.trim().split(/\s+/).length : 0;
+        });
+
+        // Sample text loader
+        function loadSampleText(type) {
+            const samples = {
+                positive: "I'm absolutely thrilled with the outstanding service I received today. The team was incredibly helpful and professional, making the entire experience wonderful.",
+                negative: "The service was disappointing and frustrating. Long waiting times and unfriendly staff made this experience quite unpleasant."
+            };
+            document.getElementById('text-input').value = samples[type];
+            document.getElementById('text-input').dispatchEvent(new Event('input'));
+        }
+
+        async function analyzeSentiment() {
+            const text = document.getElementById('text-input').value;
+            if (!text.trim()) {
+                alert('Please enter some text to analyze');
+                return;
+            }
+
+            document.querySelector('.submit-button').disabled = true;
+            document.querySelector('.submit-button').textContent = 'Analyzing...';
+
+            try {
+                const results = await analyzeSentimentText(text);
+                displayResults(results);
+            } catch (error) {
+                alert('Error analyzing text. Please try again.');
+            } finally {
+                document.querySelector('.submit-button').disabled = false;
+                document.querySelector('.submit-button').textContent = 'Analyze Text';
+            }
+        }
+
+        function displayResults(results) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.style.display = 'block';
+
+            // Update sentiment score and indicator
+            document.getElementById('score').textContent = results.score.toFixed(2);
+            document.getElementById('sentiment-indicator').style.left = `${((results.score + 1) / 2) * 100}%`;
+            document.getElementById('sentiment-label').textContent = results.label;
+
+            // Update emotions
+            const emotionsHtml = Object.entries(results.emotions)
+                .map(([emotion, value]) => `
+                    <div class="emotion-item">
+                        <span class="emotion-label">${emotion}</span>
+                        <div class="emotion-bar">
+                            <div style="width: ${value * 100}%"></div>
+                        </div>
+                        <span style="min-width: 40px; text-align: right;">${Math.round(value * 100)}%</span>
+                    </div>
+                `).join('');
+
+            document.getElementById('emotions').innerHTML = `
+                <h3 style="margin: 1rem 0;">Emotional Analysis</h3>
+                ${emotionsHtml}
+            `;
+
+            // Add key findings
+            const findings = [];
+            if (Math.abs(results.score) > 0.5) {
+                findings.push(`Strong ${results.label.toLowerCase()} sentiment detected`);
+            }
+            const dominantEmotion = Object.entries(results.emotions)
+                .reduce((a, b) => a[1] > b[1] ? a : b);
+            findings.push(`Dominant emotion: ${dominantEmotion[0]}`);
+
+            document.getElementById('key-findings').innerHTML = findings
+                .map(finding => `<div class="finding-item">${finding}</div>`)
+                .join('');
+        }
+    </script>
+</body>
+</html>
