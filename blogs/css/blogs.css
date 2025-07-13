@@ -278,7 +278,7 @@ pre {
 }
 
 body {
-    background: #181f2a;
+    background: transparent;
     color: #e2e8f0;
 }
 .tools-hero {
@@ -405,4 +405,13 @@ body {
     .featured-card {
         max-width: 100vw;
     }
+}
+#tools-gradient-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -2;
+    background: linear-gradient(180deg, #30384f 0%, #181f2a 100%);
+    opacity: 1;
+    transition: opacity 0.5s;
 }
