@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with Arduino: Blinking LED</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../css/blogs.css">
+    <link rel="stylesheet" href="../css/tutorials.css">
+    
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../../index.html" class="logo">VINM Technologies</a>
+            <ul class="nav-menu">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../blogs.html" class="active">Blogs</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="blog-post">
+        <div class="container">
+            <aside class="blog-sidebar">
+                <div class="sidebar-section">
+                    <h4>Other Tutorials</h4>
+                    <ul>
+                        <li><a href="tut1.html" class="active">Blinking LED</a></li>
+                        <li><a href="tut2.html">Interfacing Sensors</a></li>
+                        <!-- Add more as needed -->
+                    </ul>
+                </div>
+                <div class="sidebar-section">
+                    <a href="../blogs.html" class="cta-button" style="margin-top:2rem;display:block;">← Back to Blogs</a>
+                </div>
+            </aside>
+            <div class="blog-main">
+                <div class="blog-cover">
+                    <img src="../../assets/it.jpg" alt="Blink LED Circuit">
+                </div>
+                <h1>Getting Started with Arduino: Blinking LED</h1>
+                <p class="blog-meta">Published: 2024-06-01 | Author: VINM Team</p>
+                <h2>Introduction</h2>
+                <p>This tutorial will guide you through your first microcontroller project: making an LED blink using an Arduino board. You'll learn about basic circuit wiring, Arduino code structure, and how to upload your first sketch.</p>
+                <h2>Components Required</h2>
+                <ul>
+                    <li>Arduino Uno board</li>
+                    <li>LED</li>
+                    <li>220Ω resistor</li>
+                    <li>Breadboard and jumper wires</li>
+                </ul>
+                <h2>Circuit Diagram</h2>
+                <div class="blog-cover">
+                    <img src="../../assets/blink-circuit.png" alt="Blink LED Circuit" style="max-width:300px;">
+                </div>
+                <h2>Code</h2>
+                <pre><code>
+void setup() {
+  pinMode(13, OUTPUT);
+}
+void loop() {
+  digitalWrite(13, HIGH);
+  delay(500);
+  digitalWrite(13, LOW);
+  delay(500);
+}
+                </code></pre>
+                <h2>Explanation</h2>
+                <p>
+                    The code sets pin 13 as an output and toggles it HIGH and LOW every 500ms, making the LED blink. This is the classic "Hello World" of embedded systems and a great way to get started with Arduino.
+                </p>
+                <h2>Next Steps</h2>
+                <ul>
+                    <li>Try changing the delay to make the LED blink faster or slower.</li>
+                    <li>Connect more LEDs to different pins and modify the code to blink them in sequence.</li>
+                    <li>Explore using a button to control the LED.</li>
+                </ul>
+                <a href="../blogs.html" class="cta-button" style="margin-top:2rem;display:inline-block;">← Back to Blogs</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

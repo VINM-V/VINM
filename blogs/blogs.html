@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VINM Blogs - Microcontroller Projects & Tutorials</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../tools/css/tools.css">
+    <link rel="stylesheet" href="css/blogs.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">VINM Technologies</a>
+            <div class="nav-toggle">
+                <span></span><span></span><span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#services">Services</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+                <li><a href="../tools/index.html">Tools</a></li>
+                <li><a href="blogs.html" class="active">Blogs</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="tools-hero">
+        <div class="container">
+            <h1>Microcontroller Projects & Tutorials</h1>
+            <p>Explore hands-on guides and real-world projects for microcontrollers, embedded systems, and electronics.</p>
+        </div>
+    </section>
+
+    <section class="featured-tutorial">
+        <div class="container">
+            <div class="featured-cards-row">
+                <div class="featured-card">
+                    <div class="featured-img">
+                        <img src="../assets/it.jpg" alt="Featured: Blinking LED">
+                    </div>
+                    <div class="featured-content">
+                        <h2>Featured: Getting Started with Arduino</h2>
+                        <p>Kickstart your embedded journey with the classic blinking LED project. Learn the basics of Arduino, circuit wiring, and code structure in this beginner-friendly tutorial.</p>
+                        <a href="tutorials/tut1.html" class="cta-button">Read Featured Tutorial</a>
+                    </div>
+                </div>
+                <div class="featured-card">
+                    <div class="featured-img">
+                        <img src="../assets/it.jpg" alt="Featured: Interfacing Sensors">
+                    </div>
+                    <div class="featured-content">
+                        <h2>Featured: Interfacing Sensors</h2>
+                        <p>Discover how to connect and read data from sensors using microcontrollers. This guide covers wiring, code, and practical tips for sensor integration.</p>
+                        <a href="tutorials/tut2.html" class="cta-button">Read Featured Tutorial</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-list">
+        <div class="container">
+            <h2 style="text-align:left;color:white;">Latest Tutorials</h2>
+            <div id="tutorials-list" class="tools-grid" style="margin-top:2rem;">
+                <!-- Tutorials will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>VINM Technologies</h3>
+                    <p>Innovating Tomorrow's Technology</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VINM Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Dynamically list all tutorials in /tutorials
+    // This requires server-side support or a manifest file.
+    // For static hosting, maintain a manifest.json or update this array manually.
+    // For demo, we'll fetch the folder and parse HTML files if server allows directory listing.
+    // Otherwise, update the array below as you add tutorials.
+
+    const tutorials = [
+        { file: "tutorials/tut1.html", title: "Getting Started with Arduino: Blinking LED", desc: "Your first microcontroller project: make an LED blink using Arduino.", img: "../assets/it.jpg", date: "2024-06-01" },
+        { file: "tutorials/tut2.html", title: "Interfacing Sensors with Microcontrollers", desc: "Learn how to connect and read data from sensors using microcontrollers.", img: "../assets/it.jpg", date: "2024-06-01" }
+        // Add more tutorials here as you create them
+    ];
+
+    const listDiv = document.getElementById('tutorials-list');
+    listDiv.innerHTML = tutorials.map(tut => `
+        <a href="${tut.file}" class="tool-card" style="color:inherit;">
+            <div class="tool-icon">
+                <img src="${tut.img || '../assets/placeholder.jpg'}" alt="${tut.title}">
+            </div>
+            <h3>${tut.title}</h3>
+            <p>${tut.desc || ""}</p>
+            <span class="tool-tech">${tut.date || ""}</span>
+            <span class="tool-cta">Read Tutorial →</span>
+        </a>
+    `).join('');
+    </script>
+</body>
+</html>

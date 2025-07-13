@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfacing Sensors with Microcontrollers</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../css/blogs.css">
+    <link rel="stylesheet" href="../css/tutorials.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../../index.html" class="logo">VINM Technologies</a>
+            <ul class="nav-menu">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../blogs.html" class="active">Blogs</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="blog-post">
+        <div class="container">
+            <aside class="blog-sidebar">
+                <div class="sidebar-section">
+                    <h4>Other Tutorials</h4>
+                    <ul>
+                        <li><a href="tut1.html">Blinking LED</a></li>
+                        <li><a href="tut2.html" class="active">Interfacing Sensors</a></li>
+                        <!-- Add more as needed -->
+                    </ul>
+                </div>
+                <div class="sidebar-section">
+                    <a href="../blogs.html" class="cta-button" style="margin-top:2rem;display:block;">← Back to Blogs</a>
+                </div>
+            </aside>
+            <div class="blog-main">
+                <div class="blog-cover">
+                    <img src="../../assets/it.jpg" alt="Sensor Tutorial Cover">
+                </div>
+                <h1>Interfacing Sensors with Microcontrollers</h1>
+                <p class="blog-meta">Published: 2024-06-01 | Author: VINM Team</p>
+                <h2>Introduction</h2>
+                <p>This tutorial explains how to connect and read data from basic sensors using a microcontroller. You'll learn about wiring, analog/digital sensors, and how to read sensor values in code.</p>
+                <h2>Components Required</h2>
+                <ul>
+                    <li>Microcontroller board (Arduino, ESP32, etc.)</li>
+                    <li>Sensor (e.g., temperature, light)</li>
+                    <li>Breadboard and jumper wires</li>
+                </ul>
+                <h2>Sample Code</h2>
+                <pre><code>
+// Example for reading analog sensor on Arduino
+int sensorPin = A0;
+void setup() {
+  Serial.begin(9600);
+}
+void loop() {
+  int value = analogRead(sensorPin);
+  Serial.println(value);
+  delay(500);
+}
+                </code></pre>
+                <h2>Explanation</h2>
+                <p>
+                    This code reads the analog value from the sensor and prints it to the serial monitor every 500ms. You can use this as a base for connecting different types of analog sensors.
+                </p>
+                <h2>Next Steps</h2>
+                <ul>
+                    <li>Try connecting a digital sensor and use <code>digitalRead()</code> instead.</li>
+                    <li>Visualize sensor data using an LCD or LEDs.</li>
+                    <li>Combine multiple sensors and process their data in your code.</li>
+                </ul>
+                <a href="../blogs.html" class="cta-button" style="margin-top:2rem;display:inline-block;">← Back to Blogs</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
